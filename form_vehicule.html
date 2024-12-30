@@ -14,13 +14,13 @@
       animation: gradientBG 10s ease infinite;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
       color: #fff;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
-      70% { background-position: 100% 50%; }
+      50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
     .form-container {
@@ -31,13 +31,28 @@
       width: 90%;
       max-width: 500px;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 20px;
+      resize: both;
+      overflow: auto;
     }
     .form-container h1 {
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin: 0 0 20px;
       color: #fff;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+    .header-image {
+      width: auto;
+      max-width: 30%;
+      height: auto;
+      resize: both;
+      overflow: auto;
+      margin: 0 auto 20px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .header-image:hover {
+      transform: scale(1.2);
     }
     .form-group {
       margin-bottom: 15px;
@@ -82,6 +97,7 @@
 </head>
 <body>
   <div class="form-container">
+    <img src="voiture.png" alt="Voiture" class="header-image">
     <h1>Ajouter un Véhicule</h1>
     <form action="index.php" method="POST">
       <div class="form-group">

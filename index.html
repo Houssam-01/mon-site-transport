@@ -16,18 +16,98 @@
       background: linear-gradient(135deg, #89cff0, #58b2dc, #1c8fd4);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      color: #fff;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .container {
+
+    /* Roue */
+    .roue {
+      position: fixed; /* Fixe pour rester visible avec le contenu principal */
+      top: 29%;
+      left: -13%;
+      width: 300px; /* Taille de la roue */
+      height: 300px;
+      background: url('roue.png') no-repeat center center;
+      background-size: cover;
+      animation: spin 3s linear infinite; /* Animation de rotation */
+      opacity: 0; /* Cachée au début */
+      transition: opacity 1s ease-in-out; /* Apparition fluide */
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Animation d'introduction */
+    #animation-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      text-align: center;
+    }
+    .letters {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      animation: dropIn 1s ease-out forwards, slideForward 2s 3s ease-in-out forwards;
+    }
+    .letter {
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .description {
+      font-size: 1rem;
+      color: #FFD700;
+      margin-top: 10px;
+    }
+
+    @keyframes dropIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-200px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideForward {
+      0% {
+        transform: translateZ(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateZ(300px) scale(2);
+        opacity: 0;
+      }
+    }
+
+    /* Contenu principal */
+    #main-content {
+      display: none;
       text-align: center;
       background: rgba(255, 255, 255, 0.1);
       padding: 40px;
@@ -35,6 +115,10 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
       width: 90%;
       max-width: 600px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     .logo {
       font-size: 2.5rem;
@@ -42,7 +126,7 @@
       margin-bottom: 10px;
     }
     .logo span {
-      color: #FFD700; /* Or couleur dorée */
+      color: #FFD700;
     }
     p {
       font-size: 1.2rem;
@@ -69,17 +153,52 @@
       transform: scale(1.1);
     }
     footer {
-      margin-top: 30px;
+      margin-top: 100px;
       font-size: 0.9rem;
-      color: #ddd;
+      color: #000000;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">Transport <span>Express</span></div>
+  <!-- Animation d'introduction -->
+  <div id="animation-container">
+    <div class="letters">
+      <div class="letter">
+        T
+        <div class="description">Transport</div>
+      </div>
+      <div class="letter">
+        R
+        <div class="description">Rapide</div>
+      </div>
+      <div class="letter">
+        A
+        <div class="description">Adapté</div>
+      </div>
+      <div class="letter">
+        N
+        <div class="description">Nouvel</div>
+      </div>
+      <div class="letter">
+        R
+        <div class="description">Réseau</div>
+      </div>
+      <div class="letter">
+        A
+        <div class="description">Automatisé</div>
+      </div>
+      <div class="letter">
+        P
+        <div class="description">Performant</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div id="main-content" class="container">
+    <div class="logo">Trans-<span>Rap</span></div>
     <p>
-      Bienvenue dans notre système de gestion de transport. Gérez facilement vos véhicules, étudiants, chauffeurs, et assistantes pour un suivi optimal.
+      Simplifiez la gestion de votre transport avec notre solution intuitive pour véhicules, étudiants, chauffeurs et assistantes.
     </p>
     <div class="buttons">
       <a href="form_vehicule.html">Ajouter un Véhicule</a>
@@ -87,7 +206,22 @@
       <a href="form_chauffeur.html">Ajouter un Chauffeur</a>
       <a href="form_assistante.html">Ajouter une Assistante</a>
     </div>
-    <footer>© 2024 - Transport Express</footer>
+    <footer> 2024 - Transport Rapide</footer>
   </div>
+
+  <!-- Roue animée -->
+  <div class="roue"></div>
+
+  <script>
+    // Afficher le contenu principal après l'animation
+    setTimeout(() => {
+      document.getElementById('animation-container').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+
+      // Afficher la roue
+      const roue = document.querySelector('.roue');
+      roue.style.opacity = 1; // Rendre la roue visible
+    }, 5000); // Durée totale de l'animation (5 secondes)
+  </script>
 </body>
 </html>
